@@ -1,0 +1,38 @@
+<div class="toDoList">
+    <div class="setTasks">
+        <div class="upTaskBlock">
+            <span>Поставленные задачи</span>
+            <button
+                class="addTask"
+                (click)="showModal()"
+            >
+                +
+            </button>
+        </div>
+        <div class="tasks">
+
+        </div>
+    </div>
+    <div class="inProgressTasks">
+        <div class="upTaskBlock">
+            <span>В работе</span>
+        </div>
+        <div class="tasks">
+            
+        </div>
+    </div>
+    <div class="completedTasks">
+        <div class="upTaskBlock">
+            <span>Завершённые задачи</span>
+        </div>
+        <div class="tasks">
+            
+        </div>
+    </div>
+</div>
+
+<app-add-task-modal
+    *ngIf="modalIsVisible"
+    [modalVisible]="modalIsVisible"
+    (changeModalVisible)="changeVisible()"
+></app-add-task-modal>

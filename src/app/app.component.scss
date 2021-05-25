@@ -1,0 +1,29 @@
+.homePage {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .upInfo {
+        .logo {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            img {
+                width: 100px;
+                height: 100px;
+            }
+            span {
+                font-size: 64px;
+                color: #fff;
+                margin-left: -10px;
+            }
+        }
+    }
+    .nameProject {
+        color: #dddddd;
+        text-align: center;
+        font-size: 24px;
+    }
+}
