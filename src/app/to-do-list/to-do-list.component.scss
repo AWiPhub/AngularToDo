@@ -1,21 +1,24 @@
 .toDoList {
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
     margin-top: 25px;
-    width: calc(100% + 20px);
-    box-shadow: 0 0 5px rgba($color: #000000, $alpha: .6);
     .setTasks, .inProgressTasks, .completedTasks {
-        width: 25vw;
-        height: 100%;
+        width: 375px;
+        height: auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        margin: 0 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba($color: #000000, $alpha: .6);
         .upTaskBlock {
-            width: 100%;
+            padding-top: 5px;
+            width: 375px;
             height: 100px;
-            padding: 10px 0 0 20px;
             position: relative;
             span {
+                margin-left: 15px;
                 font-size: 30px;
                 color: #fff;
                 font-weight: 500;
@@ -28,7 +31,7 @@
                 outline: none;
                 border: none;
                 position: absolute;
-                right: 30px;
+                right: 10px;
                 bottom: 10px;
                 color: #fff;
                 font-size: 38px;
@@ -40,10 +43,22 @@
             }
         }
         .tasks {
-            width: 25vw;
-            height: 30vh;
-            padding: 10px;
+            width: 375px;
+            min-height: 10px;
+            padding-bottom: 10px;
             background-color: rgb(235, 235, 235);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 0 0 5px 5px;
+            .task {
+                width: 350px;
+                background-color: none;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                cursor: pointer;
+            }
         }
     }
     .setTasks {

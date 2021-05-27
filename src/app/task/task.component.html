@@ -1,0 +1,10 @@
+<div
+    [ngClass]="{
+        'taskDefault': task.emergencyTask == false,
+        'taskEmergency': task.emergencyTask == true
+    }"
+>
+    <img class="emergency" *ngIf="task.emergencyTask" src="../../assets/images/report_problem_white_24dp.svg" alt="emergency">
+    {{ task.nameTask }}
+    {{ task.id }}
+</div>

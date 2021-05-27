@@ -10,7 +10,7 @@
             </button>
         </div>
         <div class="tasks">
-
+            <app-task class="task" (click)="showTaskModal()" *ngFor="let task of tasks" [task]="task"></app-task>
         </div>
     </div>
     <div class="inProgressTasks">
@@ -32,7 +32,13 @@
 </div>
 
 <app-add-task-modal
-    *ngIf="modalIsVisible"
-    [modalVisible]="modalIsVisible"
+    *ngIf="modalAddIsVisible"
+    [modalAddVisible]="modalAddIsVisible"
     (changeModalVisible)="changeVisible()"
 ></app-add-task-modal>
+
+<app-task-modal
+    *ngIf="modalTaskIsVisible"
+    [modalTaskVisible]="modalTaskIsVisible"
+    (changeTaskModalVisible)="changeTaskVisible()"
+></app-task-modal>
