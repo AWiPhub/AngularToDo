@@ -64,4 +64,5 @@
     (changeTaskModalVisible)="changeTaskVisible()"
     [selectedTask]="selectedTask"
     (remove)="updateTasks()"
+    (editedTask)="editing($event)"
 ></app-task-modal>

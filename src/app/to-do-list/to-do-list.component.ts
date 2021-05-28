@@ -22,10 +22,6 @@ export class ToDoListComponent implements OnInit {
         this.tasks = this.tasksService.updateTasks();
     }
 
-    
-
-
-
 
     modalAddIsVisible: boolean = false;
 
@@ -35,10 +31,6 @@ export class ToDoListComponent implements OnInit {
     public changeVisible(): void {
         this.modalAddIsVisible = false;
     }
-
-
-
-
 
 
     modalTaskIsVisible: boolean = false;
@@ -51,5 +43,14 @@ export class ToDoListComponent implements OnInit {
 
     public changeTaskVisible(): void {
         this.modalTaskIsVisible = false;
+    }
+
+    public editing(editTask: Task): void {
+        for (var i = 0 ; i < this.tasks.length ; i++) {
+            if (this.tasks[i]['id'] == editTask.id) {
+                this.tasks[i] = editTask;
+                localStorage.setItem('tasks', JSON.stringify(this.tasks));
+            }
+        }
     }
 }

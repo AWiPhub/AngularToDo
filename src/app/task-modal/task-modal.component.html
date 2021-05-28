@@ -1,5 +1,5 @@
 <div class="shadow" *ngIf="selectedTask">
-    <div class="window">
+    <div class="window" *ngIf="!editing; else edit">
         <button
             class="closeModal"
             (click)="changeTaskVisible()"
@@ -14,6 +14,7 @@
         >
             <span>Описание задачи</span>
         </div>
+
         <div class="aboutTask">
             <div class="taskName">
                 <span>{{ selectedTask.nameTask }}</span>
@@ -28,7 +29,7 @@
                         <!-- <img src="../../assets/images/thumb_up_black_24dp.svg" alt="like"> -->
                         <span>В работу</span>
                     </div>
-                    <div class="button">
+                    <div class="button" (click)="changeEditMode(selectedTask, 'goEdit')">
                         <!-- <img src="../../assets/images/edit_black_24dp.svg" alt="edit"> -->
                         <span>Редактировать</span>
                     </div>
@@ -46,7 +47,7 @@
                             <!-- <img src="../../assets/images/thumb_up_black_24dp.svg" alt="like"> -->
                             <span>В запланированное</span>
                         </div>
-                        <div class="button">
+                        <div class="button" (click)="changeEditMode(selectedTask, 'goEdit')">
                             <!-- <img src="../../assets/images/edit_black_24dp.svg" alt="edit"> -->
                             <span>Редактировать</span>
                         </div>
@@ -68,7 +69,7 @@
                         <!-- <img src="../../assets/images/thumb_up_black_24dp.svg" alt="like"> -->
                         <span>Вернуть в работу</span>
                     </div>
-                    <div class="button">
+                    <div class="button" (click)="changeEditMode(selectedTask, 'goEdit')">
                         <!-- <img src="../../assets/images/edit_black_24dp.svg" alt="edit"> -->
                         <span>Редактировать</span>
                     </div>
@@ -80,4 +81,54 @@
             </ng-template>
         </div>
     </div>
+
+
+    <ng-template #edit>
+        <div class="window">
+            <button
+                class="closeModal"
+                (click)="changeTaskVisible()"
+            >
+                &#215;
+            </button>
+            <div
+                [ngClass]="{
+                    'modalUp': selectedTask.emergencyTask == false,
+                    'warningModalUp': selectedTask.emergencyTask == true
+                }"
+            >
+                <span>Редактирование</span>
+            </div>
+
+            <div class="aboutTask">
+                <div class="taskName">
+                    <!-- <span>{{ selectedTask.nameTask }}</span> -->
+                    <input type="text" [(ngModel)]="newNameTask">
+                </div>
+                <div class="descriptionName">
+                    <!-- <span>{{ selectedTask.aboutTask }}</span> -->
+                    <textarea [(ngModel)]="newAboutTask" cols="30" rows="10"></textarea>
+                </div>
+                <div style="flex-direction: row; justify-content: center; margin-top: 10px;">
+                    <input [(ngModel)]="newEmergencyTask" name="emergency" class="checkbox" type="checkbox" id="checkEmergency">
+                    <label for="checkEmergency" style="margin-top: 0; font-weight: 500;">
+                        Срочно
+                        <span title="Задача, помеченная как срочная, будет выделена красным фоном">
+                            ?
+                        </span>
+                    </label>
+                </div>
+                <div class="buttons">
+                    <div class="button" (click)="changeEditMode(selectedTask, 'done')">
+                        <!-- <img src="../../assets/images/thumb_up_black_24dp.svg" alt="like"> -->
+                        <span>Принять</span>
+                    </div>
+                    <div class="button" (click)="changeEditMode(selectedTask, 'goEdit')">
+                        <!-- <img src="../../assets/images/thumb_up_black_24dp.svg" alt="like"> -->
+                        <span>Отмена</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
 </div>
