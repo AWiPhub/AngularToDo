@@ -10,7 +10,14 @@
             </button>
         </div>
         <div class="tasks">
-            <app-task class="task" (click)="showTaskModal()" *ngFor="let task of tasks" [task]="task"></app-task>
+            <div *ngFor="let task of tasks">
+                <app-task
+                    class="task"
+                    (click)="showTaskModal(task)"
+                    *ngIf="task.statusTask == 'planned'"
+                    [task]="task">
+                </app-task>
+            </div>
         </div>
     </div>
     <div class="inProgressTasks">
@@ -18,7 +25,14 @@
             <span>В работе</span>
         </div>
         <div class="tasks">
-            
+            <div *ngFor="let task of tasks">
+                <app-task
+                    class="task"
+                    (click)="showTaskModal(task)"
+                    *ngIf="task.statusTask == 'inWork'"
+                    [task]="task">
+                </app-task>
+            </div>
         </div>
     </div>
     <div class="completedTasks">
@@ -26,7 +40,14 @@
             <span>Завершённые задачи</span>
         </div>
         <div class="tasks">
-            
+            <div *ngFor="let task of tasks">
+                <app-task
+                    class="task"
+                    (click)="showTaskModal(task)"
+                    *ngIf="task.statusTask == 'finished'"
+                    [task]="task">
+                </app-task>
+            </div>
         </div>
     </div>
 </div>
@@ -41,4 +62,6 @@
     *ngIf="modalTaskIsVisible"
     [modalTaskVisible]="modalTaskIsVisible"
     (changeTaskModalVisible)="changeTaskVisible()"
+    [selectedTask]="selectedTask"
+    (remove)="updateTasks()"
 ></app-task-modal>

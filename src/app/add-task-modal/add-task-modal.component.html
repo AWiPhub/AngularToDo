@@ -9,7 +9,7 @@
         <div class="modalUp">
             <span>Создание задачи</span>
         </div>
-        <form (submit)="onSubmit(nameTask, aboutTask, emergencyTask)">
+        <form (submit)="onSubmit(nameTask, aboutTask, emergencyTask, statusTask)">
             <div>
                 <label for="nameTask">Название задачи</label>
                 <input [(ngModel)]="nameTask" name="name" type="text" id="nameTask" autocomplete="off">
@@ -22,7 +22,7 @@
                 <input [(ngModel)]="emergencyTask" name="emergency" class="checkbox" type="checkbox" id="checkEmergency">
                 <label for="checkEmergency" style="margin-top: 0; font-weight: 500;">
                     Срочно
-                    <span title="Задача, помеченная как срочная, будет выделена красным фоном и находиться выше всех">
+                    <span title="Задача, помеченная как срочная, будет выделена красным фоном">
                         ?
                     </span>
                 </label>

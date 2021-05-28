@@ -2,7 +2,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from '../models/task.model';
 import { TasksService } from '../services/tasks.service'
 
-
 @Component({
     selector: 'app-add-task-modal',
     templateUrl: './add-task-modal.component.html',
@@ -22,8 +21,8 @@ export class AddTaskModalComponent {
         this.changeModalVisible.emit()
     }
 
-    public onSubmit(nameTask: string , aboutTask: string, emergencyTask: boolean): void {
-        const task = new Task(nameTask, aboutTask, emergencyTask);
+    public onSubmit(nameTask: string , aboutTask: string, emergencyTask: boolean, statusTask: string): void {
+        const task = new Task(nameTask, aboutTask, emergencyTask, statusTask);
         this.tasksService.addTask(task);
         this.changeVisible();
     }
@@ -31,4 +30,5 @@ export class AddTaskModalComponent {
     nameTask: string = '';
     aboutTask: string = '';
     emergencyTask: boolean = false;
+    statusTask: string = 'planned';
 }

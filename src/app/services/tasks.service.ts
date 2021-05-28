@@ -16,6 +16,10 @@ export class TasksService {
       this.tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
       return this.tasks;
     }
+
+    public changeStatusTasks() {
+      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    }
   
     public addTask(task: Task) {
       this.tasks.push(task);

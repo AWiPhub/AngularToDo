@@ -28,6 +28,4 @@ export class TaskComponent implements OnInit {
         this.changeTaskModalVisible.emit()
     }
 
-    // @Input() modalTaskIsVisible: boolean = true;
-    // @Output() changeModalTaskVisible = new EventEmitter<boolean>();
 }

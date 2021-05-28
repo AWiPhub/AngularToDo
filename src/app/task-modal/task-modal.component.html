@@ -1,4 +1,4 @@
-<div class="shadow">
+<div class="shadow" *ngIf="selectedTask">
     <div class="window">
         <button
             class="closeModal"
@@ -6,9 +6,78 @@
         >
             &#215;
         </button>
-        <div class="modalUp">
+        <div
+            [ngClass]="{
+                'modalUp': selectedTask.emergencyTask == false,
+                'warningModalUp': selectedTask.emergencyTask == true
+            }"
+        >
             <span>Описание задачи</span>
         </div>
-        
+        <div class="aboutTask">
+            <div class="taskName">
+                <span>{{ selectedTask.nameTask }}</span>
+            </div>
+            <div class="descriptionName">
+                <span>{{ selectedTask.aboutTask }}</span>
+            </div>
+
+            <ng-container *ngIf="selectedTask.statusTask == 'planned';else second">
+                <div class="buttons">
+                    <div class="button" (click)="changeStatus(selectedTask, 'inWork')">
+                        <!-- <img src="../../assets/images/thumb_up_black_24dp.svg" alt="like"> -->
+                        <span>В работу</span>
+                    </div>
+                    <div class="button">
+                        <!-- <img src="../../assets/images/edit_black_24dp.svg" alt="edit"> -->
+                        <span>Редактировать</span>
+                    </div>
+                    <div class="deleteButton" (click)="removeT(selectedTask);">
+                        <!-- <img class="image" src="../../assets/images/delete_black_24dp.svg" alt="delete"> -->
+                        <span>Удалить</span>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-template #second>
+                <ng-container *ngIf="selectedTask.statusTask == 'inWork';else third">
+                    <div class="buttons">
+                        <div class="button" (click)="changeStatus(selectedTask, 'planned')">
+                            <!-- <img src="../../assets/images/thumb_up_black_24dp.svg" alt="like"> -->
+                            <span>В запланированное</span>
+                        </div>
+                        <div class="button">
+                            <!-- <img src="../../assets/images/edit_black_24dp.svg" alt="edit"> -->
+                            <span>Редактировать</span>
+                        </div>
+                        <div class="finishButton" (click)="changeStatus(selectedTask, 'finished')">
+                            <!-- <img src="../../assets/images/thumb_up_black_24dp.svg" alt="like"> -->
+                            <span>Завершено</span>
+                        </div>
+                        <div class="deleteButton" (click)="removeT(selectedTask);">
+                            <!-- <img class="image" src="../../assets/images/delete_black_24dp.svg" alt="delete"> -->
+                            <span>Удалить</span>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-template>
+
+            <ng-template #third>
+                <div class="buttons" *ngIf="selectedTask.statusTask == 'finished'">
+                    <div class="button" (click)="changeStatus(selectedTask, 'inWork')">
+                        <!-- <img src="../../assets/images/thumb_up_black_24dp.svg" alt="like"> -->
+                        <span>Вернуть в работу</span>
+                    </div>
+                    <div class="button">
+                        <!-- <img src="../../assets/images/edit_black_24dp.svg" alt="edit"> -->
+                        <span>Редактировать</span>
+                    </div>
+                    <div class="deleteButton" (click)="removeT(selectedTask);">
+                        <!-- <img class="image" src="../../assets/images/delete_black_24dp.svg" alt="delete"> -->
+                        <span>Удалить</span>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
     </div>
 </div>

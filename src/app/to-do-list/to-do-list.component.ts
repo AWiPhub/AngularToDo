@@ -22,7 +22,7 @@ export class ToDoListComponent implements OnInit {
         this.tasks = this.tasksService.updateTasks();
     }
 
-
+    
 
 
 
@@ -42,9 +42,11 @@ export class ToDoListComponent implements OnInit {
 
 
     modalTaskIsVisible: boolean = false;
+    selectedTask?: Task;
 
-    public showTaskModal(): void {
+    public showTaskModal(task: Task): void {
         this.modalTaskIsVisible = true;
+        this.selectedTask = task;
     }
 
     public changeTaskVisible(): void {
