@@ -22,7 +22,16 @@ export class AddTaskModalComponent {
     }
 
     public onSubmit(nameTask: string , aboutTask: string, emergencyTask: boolean, statusTask: string): void {
-        if (nameTask != '' && aboutTask != '') {
+        if (nameTask == '' && aboutTask == '') {
+            this.errorName = true;
+            this.errorAbout = true;
+        } else if (nameTask == '') {
+            this.errorName = true;
+            this.errorAbout = false;
+        } else if (aboutTask == '') {
+            this.errorName = false;
+            this.errorAbout = true;
+        } else {
             const task = new Task(nameTask, aboutTask, emergencyTask, statusTask);
             this.tasksService.addTask(task);
             this.changeVisible();
@@ -33,4 +42,7 @@ export class AddTaskModalComponent {
     aboutTask: string = '';
     emergencyTask: boolean = false;
     statusTask: string = 'planned';
+
+    errorName: boolean = false;
+    errorAbout: boolean = false;
 }
