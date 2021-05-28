@@ -22,9 +22,11 @@ export class AddTaskModalComponent {
     }
 
     public onSubmit(nameTask: string , aboutTask: string, emergencyTask: boolean, statusTask: string): void {
-        const task = new Task(nameTask, aboutTask, emergencyTask, statusTask);
-        this.tasksService.addTask(task);
-        this.changeVisible();
+        if (nameTask != '' && aboutTask != '') {
+            const task = new Task(nameTask, aboutTask, emergencyTask, statusTask);
+            this.tasksService.addTask(task);
+            this.changeVisible();
+        }
     }
 
     nameTask: string = '';
